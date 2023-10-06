@@ -1,7 +1,6 @@
 import random
 from tkinter import *
 
-print("TEST")
 
 def next_turn(row, column):
     global player
@@ -24,7 +23,7 @@ def next_turn(row, column):
         label.config(text=(player[0] + " wins"))
     elif check_winner() == "Tie":
         label.config(text=("Tie"))
-
+ 
 
 
 def check_winner():
@@ -50,10 +49,24 @@ def check_winner():
 
 
 def empty_spaces():
-    pass
+    spaces = 9
+    for row in range(3):
+      for column in range(3):
+        if buttons [row][column]['text'] != "":
+          spaces -=1
+
+    if spaces ==0:
+      return False
+    else:
+      return True
 
 def new_game():
-    pass
+    global player
+    player = random.choice(players)  
+    for row in range(3):
+        for column in range(3):
+            buttons[row][column]['text'] = ""
+    label.config(text=player + " turn")
 
 
 window = Tk()
